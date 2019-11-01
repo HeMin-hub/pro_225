@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.FinAccrualMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.FinAccrual" >
+    <constructor >
+      <idArg column="faid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fafsid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="famax" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="faamount" jdbcType="REAL" javaType="java.lang.Float" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    faid, fafsid, famax, faamount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_accrual
+    where faid = #{faid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_accrual
+    where faid = #{faid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.FinAccrual" >
+    insert into t_fin_accrual (faid, fafsid, famax, 
+      faamount)
+    values (#{faid,jdbcType=BIGINT}, #{fafsid,jdbcType=BIGINT}, #{famax,jdbcType=BIGINT}, 
+      #{faamount,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.FinAccrual" >
+    insert into t_fin_accrual
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="faid != null" >
+        faid,
+      </if>
+      <if test="fafsid != null" >
+        fafsid,
+      </if>
+      <if test="famax != null" >
+        famax,
+      </if>
+      <if test="faamount != null" >
+        faamount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="faid != null" >
+        #{faid,jdbcType=BIGINT},
+      </if>
+      <if test="fafsid != null" >
+        #{fafsid,jdbcType=BIGINT},
+      </if>
+      <if test="famax != null" >
+        #{famax,jdbcType=BIGINT},
+      </if>
+      <if test="faamount != null" >
+        #{faamount,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.FinAccrual" >
+    update t_fin_accrual
+    <set >
+      <if test="fafsid != null" >
+        fafsid = #{fafsid,jdbcType=BIGINT},
+      </if>
+      <if test="famax != null" >
+        famax = #{famax,jdbcType=BIGINT},
+      </if>
+      <if test="faamount != null" >
+        faamount = #{faamount,jdbcType=REAL},
+      </if>
+    </set>
+    where faid = #{faid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.FinAccrual" >
+    update t_fin_accrual
+    set fafsid = #{fafsid,jdbcType=BIGINT},
+      famax = #{famax,jdbcType=BIGINT},
+      faamount = #{faamount,jdbcType=REAL}
+    where faid = #{faid,jdbcType=BIGINT}
+  </update>
+</mapper>

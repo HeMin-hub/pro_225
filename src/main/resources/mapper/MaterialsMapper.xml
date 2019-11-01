@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.MaterialsMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.Materials" >
+    <constructor >
+      <idArg column="amid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="amname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="amtype" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="amurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="amrscore" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="amremark" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    amid, amname, amtype, amurl, amrscore, amremark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_atte_materials
+    where amid = #{amid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_atte_materials
+    where amid = #{amid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.Materials" >
+    insert into t_atte_materials (amid, amname, amtype, 
+      amurl, amrscore, amremark
+      )
+    values (#{amid,jdbcType=BIGINT}, #{amname,jdbcType=VARCHAR}, #{amtype,jdbcType=VARCHAR}, 
+      #{amurl,jdbcType=VARCHAR}, #{amrscore,jdbcType=INTEGER}, #{amremark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.Materials" >
+    insert into t_atte_materials
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="amid != null" >
+        amid,
+      </if>
+      <if test="amname != null" >
+        amname,
+      </if>
+      <if test="amtype != null" >
+        amtype,
+      </if>
+      <if test="amurl != null" >
+        amurl,
+      </if>
+      <if test="amrscore != null" >
+        amrscore,
+      </if>
+      <if test="amremark != null" >
+        amremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="amid != null" >
+        #{amid,jdbcType=BIGINT},
+      </if>
+      <if test="amname != null" >
+        #{amname,jdbcType=VARCHAR},
+      </if>
+      <if test="amtype != null" >
+        #{amtype,jdbcType=VARCHAR},
+      </if>
+      <if test="amurl != null" >
+        #{amurl,jdbcType=VARCHAR},
+      </if>
+      <if test="amrscore != null" >
+        #{amrscore,jdbcType=INTEGER},
+      </if>
+      <if test="amremark != null" >
+        #{amremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.Materials" >
+    update t_atte_materials
+    <set >
+      <if test="amname != null" >
+        amname = #{amname,jdbcType=VARCHAR},
+      </if>
+      <if test="amtype != null" >
+        amtype = #{amtype,jdbcType=VARCHAR},
+      </if>
+      <if test="amurl != null" >
+        amurl = #{amurl,jdbcType=VARCHAR},
+      </if>
+      <if test="amrscore != null" >
+        amrscore = #{amrscore,jdbcType=INTEGER},
+      </if>
+      <if test="amremark != null" >
+        amremark = #{amremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where amid = #{amid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.Materials" >
+    update t_atte_materials
+    set amname = #{amname,jdbcType=VARCHAR},
+      amtype = #{amtype,jdbcType=VARCHAR},
+      amurl = #{amurl,jdbcType=VARCHAR},
+      amrscore = #{amrscore,jdbcType=INTEGER},
+      amremark = #{amremark,jdbcType=VARCHAR}
+    where amid = #{amid,jdbcType=BIGINT}
+  </update>
+</mapper>

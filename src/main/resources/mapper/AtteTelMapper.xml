@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AtteTelMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.AtteTel" >
+    <constructor >
+      <idArg column="atid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="atufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="attel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="atcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="atstate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="atditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    atid, atufid, attel, atcode, atstate, atditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_atte_tel
+    where atid = #{atid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_atte_tel
+    where atid = #{atid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.AtteTel" >
+    insert into t_atte_tel (atid, atufid, attel, 
+      atcode, atstate, atditor
+      )
+    values (#{atid,jdbcType=BIGINT}, #{atufid,jdbcType=BIGINT}, #{attel,jdbcType=VARCHAR}, 
+      #{atcode,jdbcType=VARCHAR}, #{atstate,jdbcType=INTEGER}, #{atditor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.AtteTel" >
+    insert into t_atte_tel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="atid != null" >
+        atid,
+      </if>
+      <if test="atufid != null" >
+        atufid,
+      </if>
+      <if test="attel != null" >
+        attel,
+      </if>
+      <if test="atcode != null" >
+        atcode,
+      </if>
+      <if test="atstate != null" >
+        atstate,
+      </if>
+      <if test="atditor != null" >
+        atditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="atid != null" >
+        #{atid,jdbcType=BIGINT},
+      </if>
+      <if test="atufid != null" >
+        #{atufid,jdbcType=BIGINT},
+      </if>
+      <if test="attel != null" >
+        #{attel,jdbcType=VARCHAR},
+      </if>
+      <if test="atcode != null" >
+        #{atcode,jdbcType=VARCHAR},
+      </if>
+      <if test="atstate != null" >
+        #{atstate,jdbcType=INTEGER},
+      </if>
+      <if test="atditor != null" >
+        #{atditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.AtteTel" >
+    update t_atte_tel
+    <set >
+      <if test="atufid != null" >
+        atufid = #{atufid,jdbcType=BIGINT},
+      </if>
+      <if test="attel != null" >
+        attel = #{attel,jdbcType=VARCHAR},
+      </if>
+      <if test="atcode != null" >
+        atcode = #{atcode,jdbcType=VARCHAR},
+      </if>
+      <if test="atstate != null" >
+        atstate = #{atstate,jdbcType=INTEGER},
+      </if>
+      <if test="atditor != null" >
+        atditor = #{atditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where atid = #{atid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.AtteTel" >
+    update t_atte_tel
+    set atufid = #{atufid,jdbcType=BIGINT},
+      attel = #{attel,jdbcType=VARCHAR},
+      atcode = #{atcode,jdbcType=VARCHAR},
+      atstate = #{atstate,jdbcType=INTEGER},
+      atditor = #{atditor,jdbcType=VARCHAR}
+    where atid = #{atid,jdbcType=BIGINT}
+  </update>
+</mapper>

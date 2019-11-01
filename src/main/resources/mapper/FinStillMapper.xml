@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.FinStillMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.FinStill" >
+    <constructor >
+      <idArg column="fsid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fslid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fsfbid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fsstillamount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="fsexcessamount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="fsfbtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fstime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fsid, fslid, fsfbid, fsstillamount, fsexcessamount, fsfbtime, fstime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_still
+    where fsid = #{fsid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_still
+    where fsid = #{fsid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.FinStill" >
+    insert into t_fin_still (fsid, fslid, fsfbid, 
+      fsstillamount, fsexcessamount, fsfbtime, 
+      fstime)
+    values (#{fsid,jdbcType=BIGINT}, #{fslid,jdbcType=BIGINT}, #{fsfbid,jdbcType=BIGINT}, 
+      #{fsstillamount,jdbcType=REAL}, #{fsexcessamount,jdbcType=REAL}, #{fsfbtime,jdbcType=TIMESTAMP}, 
+      #{fstime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.FinStill" >
+    insert into t_fin_still
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fsid != null" >
+        fsid,
+      </if>
+      <if test="fslid != null" >
+        fslid,
+      </if>
+      <if test="fsfbid != null" >
+        fsfbid,
+      </if>
+      <if test="fsstillamount != null" >
+        fsstillamount,
+      </if>
+      <if test="fsexcessamount != null" >
+        fsexcessamount,
+      </if>
+      <if test="fsfbtime != null" >
+        fsfbtime,
+      </if>
+      <if test="fstime != null" >
+        fstime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fsid != null" >
+        #{fsid,jdbcType=BIGINT},
+      </if>
+      <if test="fslid != null" >
+        #{fslid,jdbcType=BIGINT},
+      </if>
+      <if test="fsfbid != null" >
+        #{fsfbid,jdbcType=BIGINT},
+      </if>
+      <if test="fsstillamount != null" >
+        #{fsstillamount,jdbcType=REAL},
+      </if>
+      <if test="fsexcessamount != null" >
+        #{fsexcessamount,jdbcType=REAL},
+      </if>
+      <if test="fsfbtime != null" >
+        #{fsfbtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fstime != null" >
+        #{fstime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.FinStill" >
+    update t_fin_still
+    <set >
+      <if test="fslid != null" >
+        fslid = #{fslid,jdbcType=BIGINT},
+      </if>
+      <if test="fsfbid != null" >
+        fsfbid = #{fsfbid,jdbcType=BIGINT},
+      </if>
+      <if test="fsstillamount != null" >
+        fsstillamount = #{fsstillamount,jdbcType=REAL},
+      </if>
+      <if test="fsexcessamount != null" >
+        fsexcessamount = #{fsexcessamount,jdbcType=REAL},
+      </if>
+      <if test="fsfbtime != null" >
+        fsfbtime = #{fsfbtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fstime != null" >
+        fstime = #{fstime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fsid = #{fsid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.FinStill" >
+    update t_fin_still
+    set fslid = #{fslid,jdbcType=BIGINT},
+      fsfbid = #{fsfbid,jdbcType=BIGINT},
+      fsstillamount = #{fsstillamount,jdbcType=REAL},
+      fsexcessamount = #{fsexcessamount,jdbcType=REAL},
+      fsfbtime = #{fsfbtime,jdbcType=TIMESTAMP},
+      fstime = #{fstime,jdbcType=TIMESTAMP}
+    where fsid = #{fsid,jdbcType=BIGINT}
+  </update>
+</mapper>

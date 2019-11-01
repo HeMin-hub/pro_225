@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AtteBankMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.AtteBank" >
+    <constructor >
+      <idArg column="abid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="asid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="abufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="abankcard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="abtype" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="abstate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="abditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    abid, asid, abufid, abankcard, abtype, abstate, abditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_atte_bank
+    where abid = #{abid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_atte_bank
+    where abid = #{abid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.AtteBank" >
+    insert into t_atte_bank (abid, asid, abufid, 
+      abankcard, abtype, abstate, 
+      abditor)
+    values (#{abid,jdbcType=BIGINT}, #{asid,jdbcType=BIGINT}, #{abufid,jdbcType=BIGINT}, 
+      #{abankcard,jdbcType=VARCHAR}, #{abtype,jdbcType=VARCHAR}, #{abstate,jdbcType=INTEGER}, 
+      #{abditor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.AtteBank" >
+    insert into t_atte_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="abid != null" >
+        abid,
+      </if>
+      <if test="asid != null" >
+        asid,
+      </if>
+      <if test="abufid != null" >
+        abufid,
+      </if>
+      <if test="abankcard != null" >
+        abankcard,
+      </if>
+      <if test="abtype != null" >
+        abtype,
+      </if>
+      <if test="abstate != null" >
+        abstate,
+      </if>
+      <if test="abditor != null" >
+        abditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="abid != null" >
+        #{abid,jdbcType=BIGINT},
+      </if>
+      <if test="asid != null" >
+        #{asid,jdbcType=BIGINT},
+      </if>
+      <if test="abufid != null" >
+        #{abufid,jdbcType=BIGINT},
+      </if>
+      <if test="abankcard != null" >
+        #{abankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="abtype != null" >
+        #{abtype,jdbcType=VARCHAR},
+      </if>
+      <if test="abstate != null" >
+        #{abstate,jdbcType=INTEGER},
+      </if>
+      <if test="abditor != null" >
+        #{abditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.AtteBank" >
+    update t_atte_bank
+    <set >
+      <if test="asid != null" >
+        asid = #{asid,jdbcType=BIGINT},
+      </if>
+      <if test="abufid != null" >
+        abufid = #{abufid,jdbcType=BIGINT},
+      </if>
+      <if test="abankcard != null" >
+        abankcard = #{abankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="abtype != null" >
+        abtype = #{abtype,jdbcType=VARCHAR},
+      </if>
+      <if test="abstate != null" >
+        abstate = #{abstate,jdbcType=INTEGER},
+      </if>
+      <if test="abditor != null" >
+        abditor = #{abditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where abid = #{abid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.AtteBank" >
+    update t_atte_bank
+    set asid = #{asid,jdbcType=BIGINT},
+      abufid = #{abufid,jdbcType=BIGINT},
+      abankcard = #{abankcard,jdbcType=VARCHAR},
+      abtype = #{abtype,jdbcType=VARCHAR},
+      abstate = #{abstate,jdbcType=INTEGER},
+      abditor = #{abditor,jdbcType=VARCHAR}
+    where abid = #{abid,jdbcType=BIGINT}
+  </update>
+</mapper>

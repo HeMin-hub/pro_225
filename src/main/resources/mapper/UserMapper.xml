@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.User" >
+    <constructor >
+      <idArg column="ulid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ulbitState" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ulname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ulpassword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ulsalt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="uaid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="uatid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ulcreatedate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ulid, ulbitState, ulname, ulpassword, ulsalt, uaid, ufid, uatid, ulcreatedate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_login
+    where ulid = #{ulid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_usr_login
+    where ulid = #{ulid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.User" >
+    insert into t_usr_login (ulid, ulbitState, ulname, 
+      ulpassword, ulsalt, uaid, 
+      ufid, uatid, ulcreatedate
+      )
+    values (#{ulid,jdbcType=BIGINT}, #{ulbitstate,jdbcType=INTEGER}, #{ulname,jdbcType=VARCHAR}, 
+      #{ulpassword,jdbcType=VARCHAR}, #{ulsalt,jdbcType=VARCHAR}, #{uaid,jdbcType=BIGINT}, 
+      #{ufid,jdbcType=BIGINT}, #{uatid,jdbcType=BIGINT}, #{ulcreatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.User" >
+    insert into t_usr_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ulid != null" >
+        ulid,
+      </if>
+      <if test="ulbitstate != null" >
+        ulbitState,
+      </if>
+      <if test="ulname != null" >
+        ulname,
+      </if>
+      <if test="ulpassword != null" >
+        ulpassword,
+      </if>
+      <if test="ulsalt != null" >
+        ulsalt,
+      </if>
+      <if test="uaid != null" >
+        uaid,
+      </if>
+      <if test="ufid != null" >
+        ufid,
+      </if>
+      <if test="uatid != null" >
+        uatid,
+      </if>
+      <if test="ulcreatedate != null" >
+        ulcreatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ulid != null" >
+        #{ulid,jdbcType=BIGINT},
+      </if>
+      <if test="ulbitstate != null" >
+        #{ulbitstate,jdbcType=INTEGER},
+      </if>
+      <if test="ulname != null" >
+        #{ulname,jdbcType=VARCHAR},
+      </if>
+      <if test="ulpassword != null" >
+        #{ulpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ulsalt != null" >
+        #{ulsalt,jdbcType=VARCHAR},
+      </if>
+      <if test="uaid != null" >
+        #{uaid,jdbcType=BIGINT},
+      </if>
+      <if test="ufid != null" >
+        #{ufid,jdbcType=BIGINT},
+      </if>
+      <if test="uatid != null" >
+        #{uatid,jdbcType=BIGINT},
+      </if>
+      <if test="ulcreatedate != null" >
+        #{ulcreatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.User" >
+    update t_usr_login
+    <set >
+      <if test="ulbitstate != null" >
+        ulbitState = #{ulbitstate,jdbcType=INTEGER},
+      </if>
+      <if test="ulname != null" >
+        ulname = #{ulname,jdbcType=VARCHAR},
+      </if>
+      <if test="ulpassword != null" >
+        ulpassword = #{ulpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ulsalt != null" >
+        ulsalt = #{ulsalt,jdbcType=VARCHAR},
+      </if>
+      <if test="uaid != null" >
+        uaid = #{uaid,jdbcType=BIGINT},
+      </if>
+      <if test="ufid != null" >
+        ufid = #{ufid,jdbcType=BIGINT},
+      </if>
+      <if test="uatid != null" >
+        uatid = #{uatid,jdbcType=BIGINT},
+      </if>
+      <if test="ulcreatedate != null" >
+        ulcreatedate = #{ulcreatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ulid = #{ulid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.User" >
+    update t_usr_login
+    set ulbitState = #{ulbitstate,jdbcType=INTEGER},
+      ulname = #{ulname,jdbcType=VARCHAR},
+      ulpassword = #{ulpassword,jdbcType=VARCHAR},
+      ulsalt = #{ulsalt,jdbcType=VARCHAR},
+      uaid = #{uaid,jdbcType=BIGINT},
+      ufid = #{ufid,jdbcType=BIGINT},
+      uatid = #{uatid,jdbcType=BIGINT},
+      ulcreatedate = #{ulcreatedate,jdbcType=TIMESTAMP}
+    where ulid = #{ulid,jdbcType=BIGINT}
+  </update>
+</mapper>

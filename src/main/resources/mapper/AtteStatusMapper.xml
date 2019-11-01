@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AtteStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.AtteStatus" >
+    <constructor >
+      <idArg column="asid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="asufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="asidcardno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asidaddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asidimg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="asstate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="asditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    asid, asufid, asidcardno, asidaddress, asidimg, asstate, asditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_atte_status
+    where asid = #{asid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_atte_status
+    where asid = #{asid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.AtteStatus" >
+    insert into t_atte_status (asid, asufid, asidcardno, 
+      asidaddress, asidimg, asstate, 
+      asditor)
+    values (#{asid,jdbcType=BIGINT}, #{asufid,jdbcType=BIGINT}, #{asidcardno,jdbcType=VARCHAR}, 
+      #{asidaddress,jdbcType=VARCHAR}, #{asidimg,jdbcType=VARCHAR}, #{asstate,jdbcType=INTEGER}, 
+      #{asditor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.AtteStatus" >
+    insert into t_atte_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="asid != null" >
+        asid,
+      </if>
+      <if test="asufid != null" >
+        asufid,
+      </if>
+      <if test="asidcardno != null" >
+        asidcardno,
+      </if>
+      <if test="asidaddress != null" >
+        asidaddress,
+      </if>
+      <if test="asidimg != null" >
+        asidimg,
+      </if>
+      <if test="asstate != null" >
+        asstate,
+      </if>
+      <if test="asditor != null" >
+        asditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="asid != null" >
+        #{asid,jdbcType=BIGINT},
+      </if>
+      <if test="asufid != null" >
+        #{asufid,jdbcType=BIGINT},
+      </if>
+      <if test="asidcardno != null" >
+        #{asidcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="asidaddress != null" >
+        #{asidaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg != null" >
+        #{asidimg,jdbcType=VARCHAR},
+      </if>
+      <if test="asstate != null" >
+        #{asstate,jdbcType=INTEGER},
+      </if>
+      <if test="asditor != null" >
+        #{asditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.AtteStatus" >
+    update t_atte_status
+    <set >
+      <if test="asufid != null" >
+        asufid = #{asufid,jdbcType=BIGINT},
+      </if>
+      <if test="asidcardno != null" >
+        asidcardno = #{asidcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="asidaddress != null" >
+        asidaddress = #{asidaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="asidimg != null" >
+        asidimg = #{asidimg,jdbcType=VARCHAR},
+      </if>
+      <if test="asstate != null" >
+        asstate = #{asstate,jdbcType=INTEGER},
+      </if>
+      <if test="asditor != null" >
+        asditor = #{asditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where asid = #{asid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.AtteStatus" >
+    update t_atte_status
+    set asufid = #{asufid,jdbcType=BIGINT},
+      asidcardno = #{asidcardno,jdbcType=VARCHAR},
+      asidaddress = #{asidaddress,jdbcType=VARCHAR},
+      asidimg = #{asidimg,jdbcType=VARCHAR},
+      asstate = #{asstate,jdbcType=INTEGER},
+      asditor = #{asditor,jdbcType=VARCHAR}
+    where asid = #{asid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AtteEmailMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.AtteEmail" >
+    <constructor >
+      <idArg column="aeid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="aeufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="aemail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aecode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="aestate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="aeditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aeid, aeufid, aemail, aecode, aestate, aeditor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_atte_email
+    where aeid = #{aeid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_atte_email
+    where aeid = #{aeid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.AtteEmail" >
+    insert into t_atte_email (aeid, aeufid, aemail, 
+      aecode, aestate, aeditor
+      )
+    values (#{aeid,jdbcType=BIGINT}, #{aeufid,jdbcType=BIGINT}, #{aemail,jdbcType=VARCHAR}, 
+      #{aecode,jdbcType=VARCHAR}, #{aestate,jdbcType=INTEGER}, #{aeditor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.AtteEmail" >
+    insert into t_atte_email
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aeid != null" >
+        aeid,
+      </if>
+      <if test="aeufid != null" >
+        aeufid,
+      </if>
+      <if test="aemail != null" >
+        aemail,
+      </if>
+      <if test="aecode != null" >
+        aecode,
+      </if>
+      <if test="aestate != null" >
+        aestate,
+      </if>
+      <if test="aeditor != null" >
+        aeditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aeid != null" >
+        #{aeid,jdbcType=BIGINT},
+      </if>
+      <if test="aeufid != null" >
+        #{aeufid,jdbcType=BIGINT},
+      </if>
+      <if test="aemail != null" >
+        #{aemail,jdbcType=VARCHAR},
+      </if>
+      <if test="aecode != null" >
+        #{aecode,jdbcType=VARCHAR},
+      </if>
+      <if test="aestate != null" >
+        #{aestate,jdbcType=INTEGER},
+      </if>
+      <if test="aeditor != null" >
+        #{aeditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.AtteEmail" >
+    update t_atte_email
+    <set >
+      <if test="aeufid != null" >
+        aeufid = #{aeufid,jdbcType=BIGINT},
+      </if>
+      <if test="aemail != null" >
+        aemail = #{aemail,jdbcType=VARCHAR},
+      </if>
+      <if test="aecode != null" >
+        aecode = #{aecode,jdbcType=VARCHAR},
+      </if>
+      <if test="aestate != null" >
+        aestate = #{aestate,jdbcType=INTEGER},
+      </if>
+      <if test="aeditor != null" >
+        aeditor = #{aeditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aeid = #{aeid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.AtteEmail" >
+    update t_atte_email
+    set aeufid = #{aeufid,jdbcType=BIGINT},
+      aemail = #{aemail,jdbcType=VARCHAR},
+      aecode = #{aecode,jdbcType=VARCHAR},
+      aestate = #{aestate,jdbcType=INTEGER},
+      aeditor = #{aeditor,jdbcType=VARCHAR}
+    where aeid = #{aeid,jdbcType=BIGINT}
+  </update>
+</mapper>

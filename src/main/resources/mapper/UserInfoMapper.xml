@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.UserInfo" >
+    <constructor >
+      <idArg column="ufid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="urid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ufrealName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufidNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufphoneNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufincomeGrade" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="ufmarriage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufkidCount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufeducationbackground" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ufhouseCondition" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ufid, urid, ufrealName, ufidNumber, ufphoneNumber, ufincomeGrade, ufmarriage, ufkidCount, 
+    ufeducationbackground, ufhouseCondition
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_info
+    where ufid = #{ufid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_usr_info
+    where ufid = #{ufid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.UserInfo" >
+    insert into t_usr_info (ufid, urid, ufrealName, 
+      ufidNumber, ufphoneNumber, ufincomeGrade, 
+      ufmarriage, ufkidCount, ufeducationbackground, 
+      ufhouseCondition)
+    values (#{ufid,jdbcType=BIGINT}, #{urid,jdbcType=BIGINT}, #{ufrealname,jdbcType=VARCHAR}, 
+      #{ufidnumber,jdbcType=VARCHAR}, #{ufphonenumber,jdbcType=VARCHAR}, #{ufincomegrade,jdbcType=REAL}, 
+      #{ufmarriage,jdbcType=VARCHAR}, #{ufkidcount,jdbcType=VARCHAR}, #{ufeducationbackground,jdbcType=VARCHAR}, 
+      #{ufhousecondition,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.UserInfo" >
+    insert into t_usr_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ufid != null" >
+        ufid,
+      </if>
+      <if test="urid != null" >
+        urid,
+      </if>
+      <if test="ufrealname != null" >
+        ufrealName,
+      </if>
+      <if test="ufidnumber != null" >
+        ufidNumber,
+      </if>
+      <if test="ufphonenumber != null" >
+        ufphoneNumber,
+      </if>
+      <if test="ufincomegrade != null" >
+        ufincomeGrade,
+      </if>
+      <if test="ufmarriage != null" >
+        ufmarriage,
+      </if>
+      <if test="ufkidcount != null" >
+        ufkidCount,
+      </if>
+      <if test="ufeducationbackground != null" >
+        ufeducationbackground,
+      </if>
+      <if test="ufhousecondition != null" >
+        ufhouseCondition,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ufid != null" >
+        #{ufid,jdbcType=BIGINT},
+      </if>
+      <if test="urid != null" >
+        #{urid,jdbcType=BIGINT},
+      </if>
+      <if test="ufrealname != null" >
+        #{ufrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ufidnumber != null" >
+        #{ufidnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufphonenumber != null" >
+        #{ufphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufincomegrade != null" >
+        #{ufincomegrade,jdbcType=REAL},
+      </if>
+      <if test="ufmarriage != null" >
+        #{ufmarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="ufkidcount != null" >
+        #{ufkidcount,jdbcType=VARCHAR},
+      </if>
+      <if test="ufeducationbackground != null" >
+        #{ufeducationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="ufhousecondition != null" >
+        #{ufhousecondition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.UserInfo" >
+    update t_usr_info
+    <set >
+      <if test="urid != null" >
+        urid = #{urid,jdbcType=BIGINT},
+      </if>
+      <if test="ufrealname != null" >
+        ufrealName = #{ufrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="ufidnumber != null" >
+        ufidNumber = #{ufidnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufphonenumber != null" >
+        ufphoneNumber = #{ufphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ufincomegrade != null" >
+        ufincomeGrade = #{ufincomegrade,jdbcType=REAL},
+      </if>
+      <if test="ufmarriage != null" >
+        ufmarriage = #{ufmarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="ufkidcount != null" >
+        ufkidCount = #{ufkidcount,jdbcType=VARCHAR},
+      </if>
+      <if test="ufeducationbackground != null" >
+        ufeducationbackground = #{ufeducationbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="ufhousecondition != null" >
+        ufhouseCondition = #{ufhousecondition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ufid = #{ufid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.UserInfo" >
+    update t_usr_info
+    set urid = #{urid,jdbcType=BIGINT},
+      ufrealName = #{ufrealname,jdbcType=VARCHAR},
+      ufidNumber = #{ufidnumber,jdbcType=VARCHAR},
+      ufphoneNumber = #{ufphonenumber,jdbcType=VARCHAR},
+      ufincomeGrade = #{ufincomegrade,jdbcType=REAL},
+      ufmarriage = #{ufmarriage,jdbcType=VARCHAR},
+      ufkidCount = #{ufkidcount,jdbcType=VARCHAR},
+      ufeducationbackground = #{ufeducationbackground,jdbcType=VARCHAR},
+      ufhouseCondition = #{ufhousecondition,jdbcType=VARCHAR}
+    where ufid = #{ufid,jdbcType=BIGINT}
+  </update>
+</mapper>

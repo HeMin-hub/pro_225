@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AttestationMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.Attestation" >
+    <constructor >
+      <idArg column="uatid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="astatus" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="atel" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="aemail" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="abank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="amaterials" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uatid, astatus, atel, aemail, abank, amaterials
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_attestation
+    where uatid = #{uatid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_usr_attestation
+    where uatid = #{uatid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.Attestation" >
+    insert into t_usr_attestation (uatid, astatus, atel, 
+      aemail, abank, amaterials
+      )
+    values (#{uatid,jdbcType=BIGINT}, #{astatus,jdbcType=INTEGER}, #{atel,jdbcType=INTEGER}, 
+      #{aemail,jdbcType=INTEGER}, #{abank,jdbcType=INTEGER}, #{amaterials,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.Attestation" >
+    insert into t_usr_attestation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uatid != null" >
+        uatid,
+      </if>
+      <if test="astatus != null" >
+        astatus,
+      </if>
+      <if test="atel != null" >
+        atel,
+      </if>
+      <if test="aemail != null" >
+        aemail,
+      </if>
+      <if test="abank != null" >
+        abank,
+      </if>
+      <if test="amaterials != null" >
+        amaterials,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uatid != null" >
+        #{uatid,jdbcType=BIGINT},
+      </if>
+      <if test="astatus != null" >
+        #{astatus,jdbcType=INTEGER},
+      </if>
+      <if test="atel != null" >
+        #{atel,jdbcType=INTEGER},
+      </if>
+      <if test="aemail != null" >
+        #{aemail,jdbcType=INTEGER},
+      </if>
+      <if test="abank != null" >
+        #{abank,jdbcType=INTEGER},
+      </if>
+      <if test="amaterials != null" >
+        #{amaterials,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.Attestation" >
+    update t_usr_attestation
+    <set >
+      <if test="astatus != null" >
+        astatus = #{astatus,jdbcType=INTEGER},
+      </if>
+      <if test="atel != null" >
+        atel = #{atel,jdbcType=INTEGER},
+      </if>
+      <if test="aemail != null" >
+        aemail = #{aemail,jdbcType=INTEGER},
+      </if>
+      <if test="abank != null" >
+        abank = #{abank,jdbcType=INTEGER},
+      </if>
+      <if test="amaterials != null" >
+        amaterials = #{amaterials,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uatid = #{uatid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.Attestation" >
+    update t_usr_attestation
+    set astatus = #{astatus,jdbcType=INTEGER},
+      atel = #{atel,jdbcType=INTEGER},
+      aemail = #{aemail,jdbcType=INTEGER},
+      abank = #{abank,jdbcType=INTEGER},
+      amaterials = #{amaterials,jdbcType=INTEGER}
+    where uatid = #{uatid,jdbcType=BIGINT}
+  </update>
+</mapper>

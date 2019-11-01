@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.RelationMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.Relation" >
+    <constructor >
+      <idArg column="urid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="urlinkman" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="urrealname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="urtel" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    urid, urlinkman, urrealname, urtel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_relation
+    where urid = #{urid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_usr_relation
+    where urid = #{urid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.Relation" >
+    insert into t_usr_relation (urid, urlinkman, urrealname, 
+      urtel)
+    values (#{urid,jdbcType=BIGINT}, #{urlinkman,jdbcType=VARCHAR}, #{urrealname,jdbcType=VARCHAR}, 
+      #{urtel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.Relation" >
+    insert into t_usr_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urid != null" >
+        urid,
+      </if>
+      <if test="urlinkman != null" >
+        urlinkman,
+      </if>
+      <if test="urrealname != null" >
+        urrealname,
+      </if>
+      <if test="urtel != null" >
+        urtel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urid != null" >
+        #{urid,jdbcType=BIGINT},
+      </if>
+      <if test="urlinkman != null" >
+        #{urlinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="urrealname != null" >
+        #{urrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="urtel != null" >
+        #{urtel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.Relation" >
+    update t_usr_relation
+    <set >
+      <if test="urlinkman != null" >
+        urlinkman = #{urlinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="urrealname != null" >
+        urrealname = #{urrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="urtel != null" >
+        urtel = #{urtel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where urid = #{urid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.Relation" >
+    update t_usr_relation
+    set urlinkman = #{urlinkman,jdbcType=VARCHAR},
+      urrealname = #{urrealname,jdbcType=VARCHAR},
+      urtel = #{urtel,jdbcType=VARCHAR}
+    where urid = #{urid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.FinBorrowMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.FinBorrow" >
+    <constructor >
+      <idArg column="fbid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fblid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fbbidRequestAmount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="fbcurrentrate" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="fbmonthes2retun" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fbretruntype" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fbtitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fbdescription" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fbid, fblid, fbbidRequestAmount, fbcurrentrate, fbmonthes2retun, fbretruntype, fbtitle, 
+    fbdescription
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_borrow
+    where fbid = #{fbid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_borrow
+    where fbid = #{fbid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.FinBorrow" >
+    insert into t_fin_borrow (fbid, fblid, fbbidRequestAmount, 
+      fbcurrentrate, fbmonthes2retun, fbretruntype, 
+      fbtitle, fbdescription)
+    values (#{fbid,jdbcType=BIGINT}, #{fblid,jdbcType=BIGINT}, #{fbbidrequestamount,jdbcType=REAL}, 
+      #{fbcurrentrate,jdbcType=REAL}, #{fbmonthes2retun,jdbcType=INTEGER}, #{fbretruntype,jdbcType=INTEGER}, 
+      #{fbtitle,jdbcType=VARCHAR}, #{fbdescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.FinBorrow" >
+    insert into t_fin_borrow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fbid != null" >
+        fbid,
+      </if>
+      <if test="fblid != null" >
+        fblid,
+      </if>
+      <if test="fbbidrequestamount != null" >
+        fbbidRequestAmount,
+      </if>
+      <if test="fbcurrentrate != null" >
+        fbcurrentrate,
+      </if>
+      <if test="fbmonthes2retun != null" >
+        fbmonthes2retun,
+      </if>
+      <if test="fbretruntype != null" >
+        fbretruntype,
+      </if>
+      <if test="fbtitle != null" >
+        fbtitle,
+      </if>
+      <if test="fbdescription != null" >
+        fbdescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fbid != null" >
+        #{fbid,jdbcType=BIGINT},
+      </if>
+      <if test="fblid != null" >
+        #{fblid,jdbcType=BIGINT},
+      </if>
+      <if test="fbbidrequestamount != null" >
+        #{fbbidrequestamount,jdbcType=REAL},
+      </if>
+      <if test="fbcurrentrate != null" >
+        #{fbcurrentrate,jdbcType=REAL},
+      </if>
+      <if test="fbmonthes2retun != null" >
+        #{fbmonthes2retun,jdbcType=INTEGER},
+      </if>
+      <if test="fbretruntype != null" >
+        #{fbretruntype,jdbcType=INTEGER},
+      </if>
+      <if test="fbtitle != null" >
+        #{fbtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fbdescription != null" >
+        #{fbdescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.FinBorrow" >
+    update t_fin_borrow
+    <set >
+      <if test="fblid != null" >
+        fblid = #{fblid,jdbcType=BIGINT},
+      </if>
+      <if test="fbbidrequestamount != null" >
+        fbbidRequestAmount = #{fbbidrequestamount,jdbcType=REAL},
+      </if>
+      <if test="fbcurrentrate != null" >
+        fbcurrentrate = #{fbcurrentrate,jdbcType=REAL},
+      </if>
+      <if test="fbmonthes2retun != null" >
+        fbmonthes2retun = #{fbmonthes2retun,jdbcType=INTEGER},
+      </if>
+      <if test="fbretruntype != null" >
+        fbretruntype = #{fbretruntype,jdbcType=INTEGER},
+      </if>
+      <if test="fbtitle != null" >
+        fbtitle = #{fbtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="fbdescription != null" >
+        fbdescription = #{fbdescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fbid = #{fbid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.FinBorrow" >
+    update t_fin_borrow
+    set fblid = #{fblid,jdbcType=BIGINT},
+      fbbidRequestAmount = #{fbbidrequestamount,jdbcType=REAL},
+      fbcurrentrate = #{fbcurrentrate,jdbcType=REAL},
+      fbmonthes2retun = #{fbmonthes2retun,jdbcType=INTEGER},
+      fbretruntype = #{fbretruntype,jdbcType=INTEGER},
+      fbtitle = #{fbtitle,jdbcType=VARCHAR},
+      fbdescription = #{fbdescription,jdbcType=VARCHAR}
+    where fbid = #{fbid,jdbcType=BIGINT}
+  </update>
+</mapper>

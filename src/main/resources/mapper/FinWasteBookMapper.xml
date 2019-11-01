@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.FinWasteBookMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.FinWasteBook" >
+    <constructor >
+      <idArg column="fwid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fwlid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fwfsid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fwfbid" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fwid, fwlid, fwfsid, fwfbid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_wastebook
+    where fwid = #{fwid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_wastebook
+    where fwid = #{fwid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.FinWasteBook" >
+    insert into t_fin_wastebook (fwid, fwlid, fwfsid, 
+      fwfbid)
+    values (#{fwid,jdbcType=BIGINT}, #{fwlid,jdbcType=BIGINT}, #{fwfsid,jdbcType=BIGINT}, 
+      #{fwfbid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.FinWasteBook" >
+    insert into t_fin_wastebook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fwid != null" >
+        fwid,
+      </if>
+      <if test="fwlid != null" >
+        fwlid,
+      </if>
+      <if test="fwfsid != null" >
+        fwfsid,
+      </if>
+      <if test="fwfbid != null" >
+        fwfbid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fwid != null" >
+        #{fwid,jdbcType=BIGINT},
+      </if>
+      <if test="fwlid != null" >
+        #{fwlid,jdbcType=BIGINT},
+      </if>
+      <if test="fwfsid != null" >
+        #{fwfsid,jdbcType=BIGINT},
+      </if>
+      <if test="fwfbid != null" >
+        #{fwfbid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.FinWasteBook" >
+    update t_fin_wastebook
+    <set >
+      <if test="fwlid != null" >
+        fwlid = #{fwlid,jdbcType=BIGINT},
+      </if>
+      <if test="fwfsid != null" >
+        fwfsid = #{fwfsid,jdbcType=BIGINT},
+      </if>
+      <if test="fwfbid != null" >
+        fwfbid = #{fwfbid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where fwid = #{fwid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.FinWasteBook" >
+    update t_fin_wastebook
+    set fwlid = #{fwlid,jdbcType=BIGINT},
+      fwfsid = #{fwfsid,jdbcType=BIGINT},
+      fwfbid = #{fwfbid,jdbcType=BIGINT}
+    where fwid = #{fwid,jdbcType=BIGINT}
+  </update>
+</mapper>

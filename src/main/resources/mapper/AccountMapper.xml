@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.Account" >
+    <constructor >
+      <idArg column="uaid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="tradePassword" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="usableAmount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="freezedAmount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="unReceiveInterest" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="unReceivePrincipal" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="unReturnAmount" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="remainBorrowLimit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="borrowLimit" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uaid, tradePassword, salt, usableAmount, freezedAmount, unReceiveInterest, unReceivePrincipal, 
+    unReturnAmount, remainBorrowLimit, borrowLimit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_usr_account
+    where uaid = #{uaid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_usr_account
+    where uaid = #{uaid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.Account" >
+    insert into t_usr_account (uaid, tradePassword, salt, 
+      usableAmount, freezedAmount, unReceiveInterest, 
+      unReceivePrincipal, unReturnAmount, remainBorrowLimit, 
+      borrowLimit)
+    values (#{uaid,jdbcType=BIGINT}, #{tradepassword,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{usableamount,jdbcType=REAL}, #{freezedamount,jdbcType=REAL}, #{unreceiveinterest,jdbcType=REAL}, 
+      #{unreceiveprincipal,jdbcType=REAL}, #{unreturnamount,jdbcType=REAL}, #{remainborrowlimit,jdbcType=INTEGER}, 
+      #{borrowlimit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.Account" >
+    insert into t_usr_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uaid != null" >
+        uaid,
+      </if>
+      <if test="tradepassword != null" >
+        tradePassword,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="usableamount != null" >
+        usableAmount,
+      </if>
+      <if test="freezedamount != null" >
+        freezedAmount,
+      </if>
+      <if test="unreceiveinterest != null" >
+        unReceiveInterest,
+      </if>
+      <if test="unreceiveprincipal != null" >
+        unReceivePrincipal,
+      </if>
+      <if test="unreturnamount != null" >
+        unReturnAmount,
+      </if>
+      <if test="remainborrowlimit != null" >
+        remainBorrowLimit,
+      </if>
+      <if test="borrowlimit != null" >
+        borrowLimit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uaid != null" >
+        #{uaid,jdbcType=BIGINT},
+      </if>
+      <if test="tradepassword != null" >
+        #{tradepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="usableamount != null" >
+        #{usableamount,jdbcType=REAL},
+      </if>
+      <if test="freezedamount != null" >
+        #{freezedamount,jdbcType=REAL},
+      </if>
+      <if test="unreceiveinterest != null" >
+        #{unreceiveinterest,jdbcType=REAL},
+      </if>
+      <if test="unreceiveprincipal != null" >
+        #{unreceiveprincipal,jdbcType=REAL},
+      </if>
+      <if test="unreturnamount != null" >
+        #{unreturnamount,jdbcType=REAL},
+      </if>
+      <if test="remainborrowlimit != null" >
+        #{remainborrowlimit,jdbcType=INTEGER},
+      </if>
+      <if test="borrowlimit != null" >
+        #{borrowlimit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.Account" >
+    update t_usr_account
+    <set >
+      <if test="tradepassword != null" >
+        tradePassword = #{tradepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="usableamount != null" >
+        usableAmount = #{usableamount,jdbcType=REAL},
+      </if>
+      <if test="freezedamount != null" >
+        freezedAmount = #{freezedamount,jdbcType=REAL},
+      </if>
+      <if test="unreceiveinterest != null" >
+        unReceiveInterest = #{unreceiveinterest,jdbcType=REAL},
+      </if>
+      <if test="unreceiveprincipal != null" >
+        unReceivePrincipal = #{unreceiveprincipal,jdbcType=REAL},
+      </if>
+      <if test="unreturnamount != null" >
+        unReturnAmount = #{unreturnamount,jdbcType=REAL},
+      </if>
+      <if test="remainborrowlimit != null" >
+        remainBorrowLimit = #{remainborrowlimit,jdbcType=INTEGER},
+      </if>
+      <if test="borrowlimit != null" >
+        borrowLimit = #{borrowlimit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uaid = #{uaid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.Account" >
+    update t_usr_account
+    set tradePassword = #{tradepassword,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      usableAmount = #{usableamount,jdbcType=REAL},
+      freezedAmount = #{freezedamount,jdbcType=REAL},
+      unReceiveInterest = #{unreceiveinterest,jdbcType=REAL},
+      unReceivePrincipal = #{unreceiveprincipal,jdbcType=REAL},
+      unReturnAmount = #{unreturnamount,jdbcType=REAL},
+      remainBorrowLimit = #{remainborrowlimit,jdbcType=INTEGER},
+      borrowLimit = #{borrowlimit,jdbcType=INTEGER}
+    where uaid = #{uaid,jdbcType=BIGINT}
+  </update>
+</mapper>

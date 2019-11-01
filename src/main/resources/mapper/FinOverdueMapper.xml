@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hm.mapper.FinOverdueMapper" >
+  <resultMap id="BaseResultMap" type="com.hm.model.FinOverdue" >
+    <constructor >
+      <idArg column="foid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="folid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fofbid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="fofuid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="forid" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="foinfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fostate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    foid, folid, fofbid, fofuid, forid, foinfo, fostate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fin_overdue
+    where foid = #{foid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_fin_overdue
+    where foid = #{foid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hm.model.FinOverdue" >
+    insert into t_fin_overdue (foid, folid, fofbid, 
+      fofuid, forid, foinfo, 
+      fostate)
+    values (#{foid,jdbcType=BIGINT}, #{folid,jdbcType=BIGINT}, #{fofbid,jdbcType=BIGINT}, 
+      #{fofuid,jdbcType=BIGINT}, #{forid,jdbcType=BIGINT}, #{foinfo,jdbcType=VARCHAR}, 
+      #{fostate,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hm.model.FinOverdue" >
+    insert into t_fin_overdue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="foid != null" >
+        foid,
+      </if>
+      <if test="folid != null" >
+        folid,
+      </if>
+      <if test="fofbid != null" >
+        fofbid,
+      </if>
+      <if test="fofuid != null" >
+        fofuid,
+      </if>
+      <if test="forid != null" >
+        forid,
+      </if>
+      <if test="foinfo != null" >
+        foinfo,
+      </if>
+      <if test="fostate != null" >
+        fostate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="foid != null" >
+        #{foid,jdbcType=BIGINT},
+      </if>
+      <if test="folid != null" >
+        #{folid,jdbcType=BIGINT},
+      </if>
+      <if test="fofbid != null" >
+        #{fofbid,jdbcType=BIGINT},
+      </if>
+      <if test="fofuid != null" >
+        #{fofuid,jdbcType=BIGINT},
+      </if>
+      <if test="forid != null" >
+        #{forid,jdbcType=BIGINT},
+      </if>
+      <if test="foinfo != null" >
+        #{foinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fostate != null" >
+        #{fostate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hm.model.FinOverdue" >
+    update t_fin_overdue
+    <set >
+      <if test="folid != null" >
+        folid = #{folid,jdbcType=BIGINT},
+      </if>
+      <if test="fofbid != null" >
+        fofbid = #{fofbid,jdbcType=BIGINT},
+      </if>
+      <if test="fofuid != null" >
+        fofuid = #{fofuid,jdbcType=BIGINT},
+      </if>
+      <if test="forid != null" >
+        forid = #{forid,jdbcType=BIGINT},
+      </if>
+      <if test="foinfo != null" >
+        foinfo = #{foinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fostate != null" >
+        fostate = #{fostate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where foid = #{foid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hm.model.FinOverdue" >
+    update t_fin_overdue
+    set folid = #{folid,jdbcType=BIGINT},
+      fofbid = #{fofbid,jdbcType=BIGINT},
+      fofuid = #{fofuid,jdbcType=BIGINT},
+      forid = #{forid,jdbcType=BIGINT},
+      foinfo = #{foinfo,jdbcType=VARCHAR},
+      fostate = #{fostate,jdbcType=INTEGER}
+    where foid = #{foid,jdbcType=BIGINT}
+  </update>
+</mapper>
